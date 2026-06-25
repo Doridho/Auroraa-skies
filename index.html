@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesuatu Spesial Untukmu ❤️</title>
+    
+    <!-- Tailwind CSS CDN untuk styling premium & responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Dancing Script (Cursive Cantik) & Quicksand (San-serif Lembut & Bulat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS (Animate On Scroll) Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cursive: ['Dancing Script', 'cursive'],
+                        sans: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        pastel: {
+                            rose: '#ffccd5',
+                            pink: '#ffb3c1',
+                            blush: '#ff85a1',
+                            peach: '#fbc4ab',
+                            cream: '#fff5f5',
+                            dark: '#5c3d46'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom heartbeat animation for AI loader */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+        }
+        .animate-heartbeat {
+            animation: heartbeat 0.8s infinite ease-in-out;
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 179, 193, 0.3);
+        }
+
+        /* Custom animation for pulsating Click Me indicator */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .pulse-effect {
+            animation: pulse-ring 2s infinite ease-in-out;
+        }
+
+        /* Custom float animation for envelope seal */
+        @keyframes envelope-float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(3deg); }
+        }
+        .envelope-float-effect {
+            animation: envelope-float 3s infinite ease-in-out;
+        }
+
+        /* Hearts Particle Styling */
+        .heart-particle {
+            position: absolute;
+            color: #ff85a1;
+            font-family: Arial, sans-serif;
+            pointer-events: none;
+            z-index: 10;
+            animation: fall linear forwards;
+            will-change: transform, opacity;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+                transform: translateY(0px) rotate(15deg) scale(1);
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg) scale(0.6);
+                opacity: 0;
+            }
+        }
+
+        /* Bounce indicator */
+        @keyframes custom-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .animate-bounce-slow {
+            animation: custom-bounce 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-pastel-cream text-pastel-dark font-sans overflow-hidden transition-all duration-700 select-none">
+
+    <!-- Backsound Audio Player (Menggunakan file lokal music.mp3) -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Heart Container -->
+    <div id="heartContainer" class="fixed inset-0 pointer-events-none z-20 overflow-hidden w-full h-full"></div>
+
+    <!-- 1. HERO & REVEAL SECTION (Scroll-Locked secara default) -->
+    <section id="heroSection" class="min-h-screen flex flex-col items-center justify-center relative px-6 py-12 md:py-24 text-center z-30">
+        
+        <!-- Grid Container Berdampingan -->
+        <div class="max-w-4xl w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 mb-8" data-aos="fade-up">
+            
+            <!-- Sisi Kiri: Kartu Amplop Surat Interaktif -->
+            <div class="w-full md:w-1/2 flex flex-col items-center">
+                <span class="text-xs uppercase tracking-widest font-bold text-pastel-blush mb-3 block">Ada Surat Untukmu ✉️</span>
+                
+                <div id="envelopeCard" class="glass w-full max-w-xs p-6 rounded-3xl shadow-xl border-2 border-dashed border-pastel-pink hover:border-pastel-blush transition-all duration-300 transform hover:scale-105 cursor-pointer flex flex-col items-center justify-center h-60 md:h-64 relative overflow-hidden group">
+                    <div class="text-pastel-blush transition-transform duration-500 group-hover:scale-110 mb-4 envelope-float-effect">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 md:h-20 md:w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-cursive text-2xl text-pastel-blush">Buka Surat Ini</h3>
+                    <p class="text-xs text-pastel-dark/60 mt-2 font-semibold">klik untuk membaca pesan singkat</p>
+                </div>
+            </div>
+
+            <!-- Sisi Kanan: Foto Dia (Awalnya Blur) -->
+            <div class="w-full md:w-1/2 flex flex-col items-center">
+                <span class="text-xs uppercase tracking-widest font-bold text-pastel-blush mb-3 block">click me!!</span>
+                
+                <div class="relative group cursor-pointer w-60 h-60 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white transition-all duration-700 transform hover:scale-102" 
+                     id="photoContainer">
+                    
+                    <!-- Foto Utama dengan Blur Tinggi di Awal -->
+                    <img src="foto-utama.jpg" 
+                         alt="Foto Dia" 
+                         id="mainPhoto" 
+                         class="w-full h-full object-cover transition-all duration-[1500ms] filter blur-xl scale-110"
+                         onerror="this.src='https://placehold.co/600x600/ffccd5/5c3d46?text=Foto+Dia+Cantik'">
+                    
+                    <!-- Overlay Text Click Me! -->
+                    <div id="revealOverlay" class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center transition-all duration-700">
+                        <div class="bg-pastel-blush/90 text-white font-bold text-sm px-6 py-3 rounded-full shadow-lg pulse-effect flex items-center space-x-2">
+                            <span>Klik Aku! </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Scroll Down Hint Indicator -->
+        <div id="scrollHint" class="absolute bottom-6 flex flex-col items-center opacity-0 transition-all duration-1000 transform translate-y-4 pointer-events-none">
+            <span class="text-sm font-semibold text-pastel-blush uppercase tracking-widest mb-1">Scroll Kebawah</span>
+            <div class="text-2xl text-pastel-blush animate-bounce-slow">↓</div>
+        </div>
+    </section>
+
+    <!-- MODAL POPUP SURAT (Disembunyikan secara default) -->
+    <div id="letterModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500">
+        <div class="bg-[#fffdf9] max-w-lg w-full p-8 md:p-10 rounded-3xl shadow-2xl border-2 border-pastel-pink relative transform scale-90 transition-transform duration-500" id="letterModalContent">
+            <!-- Tombol Tutup -->
+            <button id="closeLetterBtn" class="absolute top-4 right-4 text-pastel-blush hover:text-pastel-dark transition-all text-2xl font-bold p-2 focus:outline-none">
+                ✕
+            </button>
+            <div class="text-center">
+                <span class="text-xs uppercase tracking-widest font-semibold text-pastel-blush/60 mb-2 block">Surat Kecil Untukmu</span>
+                <h2 class="font-cursive text-4xl text-pastel-blush mb-6">Dear <br> Tiyara Aurora Junia Rinanda Panjuga,</h2>
+                
+                <p class="text-base md:text-lg leading-relaxed text-pastel-dark font-medium italic mb-8">
+                    "Menjadi luar biasa bukan berarti hari-harimu harus selalu sempurna. Cukup jadi dirimu sendiri dan melangkah maju perlahan setiap harinya.<br><br>
+                    Jalani setiap proses dengan ritmemu sendiri. Tidak perlu terburu-buru, karena setiap langkah kecil yang kamu ambil tetaplah sebuah kemajuan. <br>
+                    Percayalah pada kapasitas yang kamu miliki, dan semoga hari-harimu selalu berjalan beriringan dengan ketenangan"
+                </p>
+
+                <div class="border-t border-dashed border-pastel-pink/30 pt-4 flex justify-between items-center text-xs text-pastel-dark/60 font-semibold">
+                    <span>from</span>
+                    <span class="font-bold uppercase tracking-wider text-pastel-blush">Ridho Javier Mahsa</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. PRAISE & WORDS SECTION -->
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MEMORY GALLERY SECTION (Estetik Responsive Grid) -->
+    <section id="gallerySection" class="py-20 px-6 bg-pastel-rose/10 relative z-30">
+        <div class="max-w-xl mx-auto text-center"> <!-- Mempersempit container agar fokus ke bawah -->
+            
+            <h2 class="font-cursive text-5xl md:text-6xl text-pastel-blush mb-4" data-aos="fade-up">
+                special for you!
+            </h2>
+            <p class="text-sm md:text-base text-pastel-dark/80 italic mb-12" data-aos="fade-up" data-aos-delay="200">
+                "Satu sudut kecil untuk merayakan keberadaanmu. <br> Tidak ada tuntutan untuk menjadi sempurna di sini, cukup lihat kembali seberapa jauh kamu sudah melangkah <br> dan bersinarlah dengan caramu sendiri."
+            </p>
+
+            <!-- Mengubah Grid menjadi Flexbox berjejer ke bawah -->
+            <div class="flex flex-col items-center space-y-12">
+                
+                <!-- Foto 1 -->
+                <div class="bg-white p-4 pb-8 rounded-lg shadow-lg transform hover:-rotate-1 transition-all duration-300 hover:scale-102 max-w-sm w-full" data-aos="fade-up">
+                    <div class="overflow-hidden rounded-md">
+                        <img src="foto2.jpg" 
+                             alt="Memori 1" 
+                             class="w-full h-80 object-cover"
+                             onerror="this.src='https://placehold.co/400x500/ffccd5/5c3d46?text=Foto+1'">
+                    </div>
+                    <p class="font-cursive text-2xl text-pastel-blush mt-4 text-center">HALU DIKIT.</p>
+                </div>
+
+                <!-- Foto 2 -->
+                <div class="bg-white p-4 pb-8 rounded-lg shadow-lg transform hover:rotate-2 transition-all duration-300 hover:scale-102 max-w-sm w-full" data-aos="fade-up">
+                    <div class="overflow-hidden rounded-md">
+                        <img src="foto1.jpg" 
+                             alt="Memori 2" 
+                             class="w-full h-80 object-cover"
+                             onerror="this.src='https://placehold.co/400x500/ffccd5/5c3d46?text=Foto+2'">
+                    </div>
+                    <p class="font-cursive text-2xl text-pastel-blush mt-4 text-center"></p>
+                </div>
+
+                <!-- Foto 3 -->
+                <div class="bg-white p-4 pb-8 rounded-lg shadow-lg transform hover:-rotate-2 transition-all duration-300 hover:scale-102 max-w-sm w-full" data-aos="fade-up">
+                    <div class="overflow-hidden rounded-md">
+                        <img src="foto4.jpg" 
+                             alt="Memori 3" 
+                             class="w-full h-80 object-cover"
+                             onerror="this.src='https://placehold.co/400x500/ffccd5/5c3d46?text=Foto+3'">
+                    </div>
+                    <p class="font-cursive text-2xl text-pastel-blush mt-4 text-center"></p>
+                </div>
+
+                <!-- Foto 4 -->
+                <div class="bg-white p-4 pb-8 rounded-lg shadow-lg transform hover:rotate-1 transition-all duration-300 hover:scale-102 max-w-sm w-full" data-aos="fade-up">
+                    <div class="overflow-hidden rounded-md">
+                        <img src="foto3.jpg" 
+                             alt="Memori 4" 
+                             class="w-full h-80 object-cover"
+                             onerror="this.src='https://placehold.co/400x500/ffccd5/5c3d46?text=Foto+4'">
+                    </div>
+                    <p class="font-cursive text-2xl text-pastel-blush mt-4 text-center"></p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.5. INTERACTIVE GEMINI LOVE MAILBOX SECTION -->
+    <section id="aiMailboxSection" class="py-20 px-6 bg-gradient-to-b from-pastel-rose/10 to-pastel-cream relative z-30">
+        <div class="max-w-xl mx-auto text-center">
+            <h2 class="font-cursive text-5xl md:text-6xl text-pastel-blush mb-4" data-aos="fade-up">
+                Kotak Surat Ajaib
+            </h2>
+            <p class="text-sm md:text-base text-pastel-dark/80 italic mb-8" data-aos="fade-up" data-aos-delay="100">
+                siapa tau lg capek kan, ini AI aku kau bisa cerita tentang apapun, bahkan hal yang privat bagimu (aku nda akan tau sama sekali)
+            </p>
+
+            <div class="glass p-6 md:p-8 rounded-3xl shadow-xl border border-pastel-rose/40 text-left" data-aos="zoom-in" data-aos-delay="200">
+                <label for="aiPrompt" class="block text-xs font-bold uppercase tracking-wider text-pastel-blush mb-2"> Tulis Sendiri keluh kesahmu:</label>
+
+                <textarea id="aiPrompt" rows="3" class="w-full p-4 rounded-2xl border border-pastel-rose/40 focus:outline-none focus:ring-2 focus:ring-pastel-blush bg-white/90 text-sm placeholder-pastel-dark/40 resize-none text-pastel-dark font-medium transition-all" placeholder="Tulis curhatanmu di sini..."></textarea>
+
+                <button id="sendLetterBtn" onclick="handleSendLetter()" class="w-full mt-4 bg-gradient-to-r from-pastel-pink to-pastel-blush hover:from-pastel-blush hover:to-pastel-pink text-white font-bold text-sm py-3 rounded-full shadow-md hover:shadow-lg transform active:scale-95 transition-all flex justify-center items-center space-x-2">
+                    <span>Kirim Surat Ajaib </span>
+                </button>
+            </div>
+
+            <!-- Response Container -->
+            <div id="aiResponseContainer" class="hidden mt-8 max-w-xl mx-auto transform transition-all duration-700">
+                <!-- Loading State -->
+                <div id="aiLoading" class="hidden flex flex-col items-center justify-center py-10 space-y-3">
+                    <div class="text-4xl animate-heartbeat text-pastel-blush">💖</div>
+                    <p class="text-xs font-semibold tracking-wider text-pastel-blush uppercase animate-pulse">Menulis...</p>
+                </div>
+
+                <!-- Letter Paper Layout -->
+                <div id="aiResultPaper" class="hidden bg-[#fffdf9] p-8 rounded-3xl shadow-lg border-2 border-dashed border-pastel-pink/50 text-left relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 font-cursive text-8xl pointer-events-none select-none text-pastel-pink">✍️</div>
+                    <span class="text-xs font-bold text-pastel-blush/60 uppercase tracking-widest block mb-4">Balasan</span>
+                    <div id="aiResultText" class="text-base font-medium leading-relaxed text-pastel-dark italic font-sans whitespace-pre-wrap"></div>
+                    <div class="mt-6 border-t border-pastel-pink/20 pt-4 flex justify-between items-center text-xs text-pastel-dark/60">
+                        <span>ido ganteng</span>
+                        <span class="font-bold uppercase tracking-wider text-pastel-blush">Ridho Javier Mahsa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CLOSING / DEEP WORDS SECTION (Penutup yang Penuh Perasaan) -->
+    <section id="closingSection" class="min-h-screen flex flex-col items-center justify-center py-20 px-6 bg-gradient-to-b from-pastel-rose/10 to-pastel-rose/40 relative z-30 text-center">
+        <div class="max-w-xl w-full" data-aos="zoom-in">
+            
+            <h2 class="font-cursive text-5xl md:text-6xl text-pastel-blush mb-6">Harapan Terbesarku...</h2>
+            
+            <p class="text-base md:text-lg leading-relaxed text-pastel-dark mb-8 font-medium">
+                "Sampai di penghujung halaman, tapi bukan akhir dari perjalananmu. Jaga dirimu baik-baik, dan semoga hari esok menyambutmu dengan lebih banyak hal baik."
+            </p>
+            
+            <p class="text-base md:text-lg leading-relaxed text-pastel-dark mb-12 font-medium">
+                Tetaplah jadi kamu yang seindah ini ya! <br> Semangat untuk hari ini, esok, dan seterusnya, semoga langkahmu selalu dilingkupi kedamaian. <br> Take care of yourself.
+            </p>
+
+            <div class="mt-8 border-t border-dashed border-pastel-blush/40 pt-8 inline-block w-full">
+                <p class="font-cursive text-3xl md:text-4xl text-pastel-blush">With all my love(anjay)</p>
+                <p class="text-lg tracking-widest font-bold text-pastel-dark uppercase mt-2">Ridho Javier Mahsa</p>
+                <p class="text-xs text-pastel-dark/60 mt-1">Dibuat khusus untukmu!</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- FLOATING MUSIC CONTROLLER -->
+    <div id="musicController" class="fixed bottom-6 right-6 z-50 transform scale-0 transition-all duration-700">
+        <button id="musicToggleBtn" class="glass text-pastel-dark hover:text-pastel-blush hover:scale-105 transition-all font-semibold py-3 px-5 rounded-full shadow-lg flex items-center space-x-2 text-sm">
+            <span id="musicIcon" class="animate-pulse">🎵</span>
+            <span id="musicText">Putar Musik</span>
+        </button>
+    </div>
+
+    <!-- Pustaka AOS JS & Logika Javascript Kustom -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inisialisasi AOS (Animate on Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 120
+        });
+
+        // Kontrol Popup Surat (Envelope Modal)
+        const envelopeCard = document.getElementById('envelopeCard');
+        const letterModal = document.getElementById('letterModal');
+        const letterModalContent = document.getElementById('letterModalContent');
+        const closeLetterBtn = document.getElementById('closeLetterBtn');
+
+        // Buka Modal
+        envelopeCard.addEventListener('click', () => {
+            letterModal.classList.remove('opacity-0', 'pointer-events-none');
+            letterModalContent.classList.remove('scale-90');
+            letterModalContent.classList.add('scale-100');
+        });
+
+        // Tutup Modal
+        function closeModal() {
+            letterModal.classList.add('opacity-0', 'pointer-events-none');
+            letterModalContent.classList.remove('scale-100');
+            letterModalContent.classList.add('scale-90');
+        }
+
+        closeLetterBtn.addEventListener('click', closeModal);
+        letterModal.addEventListener('click', (e) => {
+            if (e.target === letterModal) closeModal();
+        });
+
+        // Setup state input teks AI
+        function setAiPrompt(text) {
+            const promptArea = document.getElementById('aiPrompt');
+            promptArea.value = text;
+            promptArea.focus();
+        }
+
+        // Fungsi panggil LLM Gemini API menggunakan Exponential Backoff
+        async function getGeminiLoveLetter(userInput) {
+            const response = await fetch('/api/gemini', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userInput: userInput })
+            });
+
+            const data = await response.json();
+    
+            if (response.ok) {
+                return data.reply;
+            } else {
+                throw new Error(data.error || "Gagal mengambil pesan");
+            }
+        }
+        async function kirimPesan() {
+            const userInput = document.getElementById('inputPesan').value;
+            const outputElement = document.getElementById('outputJawaban');
+            const tombolKirim = document.querySelector('button'); // Mengambil elemen tombol
+
+            if (!userInput) return alert("Isi dulu pesannya!");
+    
+            // Matikan tombol dan ubah teks status
+            tombolKirim.disabled = true;
+            outputElement.innerText = "Sedang merangkai kata...";
+
+            try {
+                const response = await fetch('/api/gemini.mjs', { //gemini nyaa
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userInput: userInput })
+                });
+
+                const data = await response.json();
+        
+                if (response.ok) {
+                    outputElement.innerText = data.reply;
+                } else {
+                    outputElement.innerText = "Gagal mengambil pesan: " + data.error;
+                }
+            } catch (error) {
+                outputElement.innerText = "Terjadi kesalahan koneksi.";
+            } finally {
+                // Hidupkan kembali tombolnya setelah proses selesai/gagal
+                tombolKirim.disabled = false;
+            }
+        }
+        // Logic efek tulisan mesin ketik (typewriter)
+        function runTypewriterEffect(text, elementId) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = "";
+            let index = 0;
+            
+            function typeChar() {
+                if (index < text.length) {
+                    element.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeChar, 25); // Kecepatan ketikan milidetik
+                }
+            }
+            typeChar();
+        }
+
+        // Handler saat tombol Kirim Surat ditekan
+        async function handleSendLetter() {
+            const promptArea = document.getElementById('aiPrompt');
+            const userInput = promptArea.value.trim();
+
+            if (!userInput) {
+                // Tampilkan pesan soft tanpa alert
+                promptArea.placeholder = "Tulis sesuatu dulu ya";
+                promptArea.classList.add('border-red-300', 'shake-animation');
+                setTimeout(() => {
+                    promptArea.classList.remove('border-red-300', 'shake-animation');
+                }, 1000);
+                return;
+            }
+
+            // Tampilkan wadah respons, hidupkan loading, sembunyikan kertas hasil lama
+            const responseContainer = document.getElementById('aiResponseContainer');
+            const aiLoading = document.getElementById('aiLoading');
+            const aiResultPaper = document.getElementById('aiResultPaper');
+            const sendLetterBtn = document.getElementById('sendLetterBtn');
+
+            responseContainer.classList.remove('hidden');
+            aiLoading.classList.remove('hidden');
+            aiResultPaper.classList.add('hidden');
+            
+            // Disable tombol biar ga dobel klik saat loading
+            sendLetterBtn.disabled = true;
+            sendLetterBtn.classList.add('opacity-50');
+
+            try {
+                const responseText = await getGeminiLoveLetter(userInput);
+                
+                // Matikan loading, tampilkan kertas hasil
+                aiLoading.classList.add('hidden');
+                aiResultPaper.classList.remove('hidden');
+                
+                // Jalankan efek mengetik yang estetik
+                runTypewriterEffect(responseText, 'aiResultText');
+            } catch (err) {
+                console.error("Gagal memanggil Gemini API:", err);
+                aiLoading.classList.add('hidden');
+                aiResultPaper.classList.remove('hidden');
+                document.getElementById('aiResultText').innerText = "eror dikit";
+            } finally {
+                // Kembalikan tombol ke sedia kala
+                sendLetterBtn.disabled = false;
+                sendLetterBtn.classList.remove('opacity-50');
+            }
+        }
+
+        // Tangkap Elemen DOM Utama
+        const body = document.body;
+        const photoContainer = document.getElementById('photoContainer');
+        const mainPhoto = document.getElementById('mainPhoto');
+        const revealOverlay = document.getElementById('revealOverlay');
+        const scrollHint = document.getElementById('scrollHint');
+        
+        const bgMusic = document.getElementById('bgMusic');
+        const musicController = document.getElementById('musicController');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        const musicIcon = document.getElementById('musicIcon');
+        const musicText = document.getElementById('musicText');
+        const heartContainer = document.getElementById('heartContainer');
+
+        let isRevealed = false;
+
+        // Generator Efek Hati Berjatuhan
+        function createHeart() {
+            // Hanya jalankan partikel jika user sudah mengklik foto utama (Reveal)
+            if (!isRevealed) return;
+
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = '❤️';
+
+            // Koordinat horizontal acak (0vw - 100vw)
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Ukuran font acak (12px sampai 24px)
+            const randomSize = Math.random() * 12 + 12;
+            heart.style.fontSize = randomSize + 'px';
+            
+            // Durasi jatuh acak (3 detik - 6 detik)
+            const duration = Math.random() * 3 + 3;
+            heart.style.animationDuration = duration + 's';
+
+            // Berikan rotasi awal acak
+            heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            heartContainer.appendChild(heart);
+
+            // Garbage Collection (Hapus dari DOM setelah selesai animasi jatuh)
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Event Listener untuk Reveal Foto (The Reveal Trigger)
+        photoContainer.addEventListener('click', () => {
+            if (isRevealed) return; // Mencegah double klik
+            
+            isRevealed = true;
+
+            // 1. Hilangkan Blur dan Perbesar Foto Utama secara dramatis
+            mainPhoto.classList.remove('blur-xl', 'scale-110');
+            mainPhoto.classList.add('blur-none', 'scale-100');
+
+            // 2. Sembunyikan Overlay click me
+            revealOverlay.classList.add('opacity-0', 'pointer-events-none');
+            
+            // 3. Putar Musik & Tampilkan Controller Melayang
+            bgMusic.play().then(() => {
+                updateMusicUI(true);
+            }).catch((err) => {
+                console.log("Autoplay ditolak oleh browser, menanti user mengaktifkan manual.", err);
+            });
+            
+            // Tampilkan Widget musik melayang
+            musicController.classList.remove('scale-0');
+            musicController.classList.add('scale-100');
+
+            // 4. Buka Kunci Scroll (Scroll-Lock Disabled)
+            body.classList.remove('overflow-hidden');
+
+            // 5. Tampilkan Petunjuk Scroll Down secara halus
+            scrollHint.classList.remove('opacity-0', 'translate-y-4');
+            scrollHint.classList.add('opacity-100', 'translate-y-0');
+
+            // 6. Jalankan Generator Partikel Hati
+            setInterval(createHeart, 350);
+        });
+
+        // Toggle Manual Musik (Play/Pause)
+        musicToggleBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                updateMusicUI(true);
+            } else {
+                bgMusic.pause();
+                updateMusicUI(false);
+            }
+        });
+
+        // Helper fungsi memperbarui UI Musik melayang
+        function updateMusicUI(isPlaying) {
+            if (isPlaying) {
+                musicIcon.textContent = '🌸';
+                musicIcon.classList.add('animate-spin');
+                musicText.textContent = 'Matikan Musik';
+            } else {
+                musicIcon.textContent = '🎵';
+                musicIcon.classList.remove('animate-spin');
+                musicText.textContent = 'Putar Musik';
+            }
+        }
+    </script>
+</body>
+</html>
